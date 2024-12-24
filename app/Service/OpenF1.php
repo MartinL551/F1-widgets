@@ -1,28 +1,31 @@
 <?php
 
-namespace App;
+namespace App\Service;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Url;
 
-;
-
 class OpenF1
 {
-    private Url $api_base_url;
-
-    /**
-     * Create a new class instance.
-     */
-    public function __construct()
-    {
-        $config = config('openf1.api_base_url') ?: '';
-        $this->api_base_url = url($config);
+    public function __construct(
+        protected $api_base_url,
+    ) {
+        $this->api_base_url = url($api_base_url);
     }
+
+
 
     public function getCurrentRace()
     {
         $url = $this->api_base_url->query('/meetings', ['meetings_key' => 'latest']);
+        $data = Http::get($url);
+
+        return $data->getBody()->getContents();
+    }
+
+    public function getRacesForAYear(string $year)
+    {
+        $url = $this->api_base_url->query('/meetings', ['year' => $year]);
         $data = Http::get($url);
 
         return $data->getBody()->getContents();
