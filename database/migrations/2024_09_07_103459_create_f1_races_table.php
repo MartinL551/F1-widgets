@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('f1calendars', function (Blueprint $table) {
+        Schema::create('f1_races', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('race_name');
-            $table->string('race_location');
+            $table->string('race_circuit_name');
+            $table->string('race_circuit_key');
             $table->dateTime('race_date');
             $table->string('race_country_code');
             $table->string('race_country_name');
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('f1calendars');
+        Schema::dropIfExists('f1races');
     }
 };

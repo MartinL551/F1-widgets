@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Service\OpenF1;
-use View;
 
 class RecipeController extends Controller
 {

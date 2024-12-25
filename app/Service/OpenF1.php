@@ -27,6 +27,7 @@ class OpenF1
         $url = (string) $this->api_base_url->withPath('v1/meetings',)->withQuery(['year' => $year]);
         $data = Http::get($url);
 
-        return $data->getBody()->getContents();
+
+        return $data->json();
     }
 }
