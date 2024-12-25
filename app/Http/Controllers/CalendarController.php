@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Service\OpenF1;
 use Illuminate\Support\Facades\Http;
-use View;
 
 class CalendarController extends Controller
 {

@@ -14,6 +14,12 @@ return new class extends Migration
         Schema::create('f1calendars', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('race_name');
+            $table->string('race_location');
+            $table->dateTime('race_date');
+            $table->string('race_country_code');
+            $table->string('race_country_name');
+            $table->string('race_api_key');
         });
     }
 
