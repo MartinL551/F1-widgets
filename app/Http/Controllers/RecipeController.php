@@ -14,5 +14,8 @@ class RecipeController extends Controller
 
     public function showRecipeSuggester()
     {
+
+        return view('recipeSuggester', [
+        ]);
     }
 }

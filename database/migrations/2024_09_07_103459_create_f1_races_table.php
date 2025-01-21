@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('race_circuit_name');
             $table->string('race_circuit_key');
             $table->dateTime('race_date');
-            $table->string('race_country_code');
+            $table->string('race_country_code')->unique();
             $table->string('race_country_name');
             $table->string('race_api_key');
         });

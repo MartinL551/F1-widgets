@@ -1,6 +1,5 @@
 <html>
     <body>
-        <h1>{{ 'test' }} </h1>
-        <h1>{{ $jsonString }} </h1>
+        <h1>{{ 'Recipe Suggester' }} </h1>
     </body>
 </html>
