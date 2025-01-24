@@ -8,6 +8,6 @@ class NationalDishService
 {
     public function getAllNationalDishes()
     {
-        return Storage::disk('public')->get('national-dishes.json');
+        return json_decode(Storage::disk('public')->get('national-dishes.json'), true);
     }
 }

@@ -10,18 +10,15 @@ class CalendarController extends Controller
 {
     public function __construct(
         protected OpenF1 $openF1,
-        protected NationalDishService $nationalDishService,
     ) {
     }
 
     public function showLatestRace()
     {
-        $latestRace = $this->openF1->getRacesForAYear(2024);
-        $allDishes = $this->nationalDishService->getAllNationalDishes();
+        $allRaces = $this->openF1->getRacesForAYear(2024);
 
         return view('latestRace', [
-            'calendarString' => $latestRace,
-            'dishesString' => $allDishes,
+            'calendarString' => $allRaces,
         ]);
     }
 }
