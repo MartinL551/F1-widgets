@@ -16,7 +16,7 @@ class CalendarController extends Controller
 
     public function showLatestRace()
     {
-        $latestRace = $this->openF1->getCurrentRace();
+        $latestRace = $this->openF1->getRacesForAYear(2024);
         $allDishes = $this->nationalDishService->getAllNationalDishes();
 
         return view('latestRace', [

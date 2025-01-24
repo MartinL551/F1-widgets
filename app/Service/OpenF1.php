@@ -28,6 +28,6 @@ class OpenF1
         $data = Http::get($url);
 
 
-        return $data->json();
+        return $data->getBody()->getContents();
     }
 }
