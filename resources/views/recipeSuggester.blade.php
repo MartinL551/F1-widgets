@@ -1,6 +1,7 @@
 <html>
+    @vite('resources/css/app.css')
     <body>
-        <h1>{{ 'Recipe Suggester' }} </h1>
+        <h1 class="text-3xl font-bold underline">{{ 'Recipe Suggester' }} </h1>
     </body>
     
     {{ dump($dishes) }}
