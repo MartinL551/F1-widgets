@@ -17,9 +17,11 @@ class RecipeController extends Controller
 
     public function showRecipeSuggester()
     {
-
+        $currentRace = F1Race::getLatestRace();
+        $dishes = $currentRace->getDishesForRace();
 
         return view('recipeSuggester', [
+            'dishes' => $dishes,
         ]);
     }
 }

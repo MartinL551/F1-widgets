@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Service\OpenF1;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -28,7 +29,7 @@ class F1Race extends Model
 
     public function dishes(): BelongsToMany
     {
-        return $this->belongsToMany(F1Race::class, 'dish_race', 'dish_id', 'race_id');
+        return $this->belongsToMany(NationalDish::class, 'dish_race', 'dish_id', 'race_id');
     }
 
     public function getDishesForRace()
@@ -38,6 +39,7 @@ class F1Race extends Model
 
     public static function getLatestRace()
     {
-        return F1Race::where('race_date', '>', now()->subyear())->first()->get();
+        // To Do get this based on actual date
+        return F1Race::first();
     }
 }
