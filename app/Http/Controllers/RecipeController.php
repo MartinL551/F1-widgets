@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\F1Race;
 use App\Service\OpenF1;
 use App\Service\NationalDishService;
 
@@ -16,7 +17,7 @@ class RecipeController extends Controller
 
     public function showRecipeSuggester()
     {
-        $nextRace = $this->openF1->getCurrentRace();
+
 
         return view('recipeSuggester', [
         ]);

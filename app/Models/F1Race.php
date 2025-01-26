@@ -31,8 +31,13 @@ class F1Race extends Model
         return $this->belongsToMany(F1Race::class, 'dish_race', 'dish_id', 'race_id');
     }
 
-    public static function getTableName()
+    public function getDishesForRace()
     {
-        return with(new static())->getTable();
+        return $this->dishes()->get();
+    }
+
+    public static function getLatestRace()
+    {
+        return F1Race::where('race_date', '>', now()->subyear())->first()->get();
     }
 }

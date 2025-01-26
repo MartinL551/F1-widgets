@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('dish_id');
             $table->foreign('dish_id')
               ->references('id')
-              ->on('f1_races');
+              ->on('f1_races')->onDelete('cascade');
             $table->string('race_id');
             $table->foreign('race_id')
               ->references('id')
