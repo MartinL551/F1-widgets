@@ -2,12 +2,13 @@
 
 namespace App\Service;
 
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Facades\Storage;
 
 class NationalDishService
 {
     public function getAllNationalDishes()
     {
-        return json_decode(Storage::disk('public')->get('national-dishes.json'), true);
+        return Storage::disk('public')->json('national-dishes.json');
     }
 }

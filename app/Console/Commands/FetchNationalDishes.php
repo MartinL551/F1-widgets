@@ -20,25 +20,29 @@ class FetchNationalDishes extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Migrate Current National Dish Data to DB';
 
     /**
      * Execute the console command.
      */
     public function handle(NationalDishService $nationalDishService)
     {
-        $year = date('Y');
-        $dishes = $nationalDishService->getAllNationalDishes();
+        $nationalDishes = $nationalDishService->getAllNationalDishes();
+
+        $this->line('Fetch Latest Dishes From JSON', 'fg=blue');
+        $this->error('Truncate Dishes Table');
 
         NationalDish::truncate();
 
-        foreach ($dishes as $dish) {
-            NationalDish::create(
-                [
-                    ''
-
-                ]
-            );
+        foreach ($nationalDishes as $countryDishes) {
+            foreach ($countryDishes['dishes'] as $dish) {
+                $this->warn('Inserting ' . $dish . ' ' .  $countryDishes['code']);
+                 NationalDish::create([
+                    'dish_name' => $dish,
+                    'dish_country_name' => $countryDishes['name'],
+                    'dish_country_code' => $countryDishes['code'],
+                 ]);
+            }
         }
     }
 }

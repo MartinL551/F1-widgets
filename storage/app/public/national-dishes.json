@@ -1,7 +1,7 @@
 [
     {
         "name": "Bahrain",
-        "code": "BHR",
+        "code": "BRN",
         "dishes": [
             "Qouzi (slow-roasted lamb with rice and spices)",
             "Machboos (spiced rice with meat or fish)",
@@ -12,7 +12,7 @@
     },
     {
         "name": "Saudi Arabia",
-        "code": "SAU",
+        "code": "KSA",
         "dishes": [
             "Kabsa (spiced rice with chicken or lamb)",
             "Jareesh (crushed wheat porridge with meat or chicken)",
@@ -67,77 +67,7 @@
     },
     {
         "name": "Monaco",
-        "code":
-a[
-    {
-        "name": "Bahrain",
-        "code": "BHR",
-        "dishes": [
-            "Qouzi (slow-roasted lamb with rice and spices)",
-            "Machboos (spiced rice with meat or fish)",
-            "Harees (wheat and meat porridge)",
-            "Balaleet (sweet saffron noodles with eggs)",
-            "Samak Bahraini (grilled or fried Bahraini fish)"
-        ]
-    },
-    {
-        "name": "Saudi Arabia",
-        "code": "SAU",
-        "dishes": [
-            "Kabsa (spiced rice with chicken or lamb)",
-            "Jareesh (crushed wheat porridge with meat or chicken)",
-            "Matazeez (wheat dumplings with vegetables and meat)",
-            "Mutabbaq (stuffed savoury pancake)",
-            "Saleeg (creamy rice cooked with broth and milk)"
-        ]
-    },
-    {
-        "name": "Australia",
-        "code": "AUS",
-        "dishes": [
-            "Meat Pie",
-            "Lamingtons (sponge cake with chocolate and coconut)",
-            "Vegemite on Toast",
-            "Barramundi (grilled Australian fish)",
-            "Pavlova (meringue dessert topped with fruit)"
-        ]
-    },
-    {
-        "name": "Azerbaijan",
-        "code": "AZE",
-        "dishes": [
-            "Plov (rice pilaf with saffron and meat)",
-            "Dushbara (tiny dumplings in lamb broth)",
-            "Kebab (grilled meat skewers)",
-            "Qutab (stuffed savoury pancake)",
-            "Piti (lamb and chickpea stew)"
-        ]
-    },
-    {
-        "name": "United States",
-        "code": "USA",
-        "dishes": [
-            "Barbecue Ribs (regional styles like Texas or Carolina)",
-            "Burger",
-            "Apple Pie",
-            "Clam Chowder (New England-style)",
-            "Fried Chicken"
-        ]
-    },
-    {
-        "name": "Italy",
-        "code": "ITA",
-        "dishes": [
-            "Pizza Margherita",
-            "Osso Buco (braised veal shanks with gremolata)",
-            "Risotto alla Milanese",
-            "Tiramisu",
-            "Lasagna"
-        ]
-    },
-    {
-        "name": "Monaco",
-        "code": "MCO",
+        "code": "MON",
         "dishes": [
             "Barbajuan (fried pastry filled with Swiss chard and cheese)",
             "Socca (chickpea pancake)",
@@ -214,7 +144,7 @@ a[
     },
     {
         "name": "Netherlands",
-        "code": "NLD",
+        "code": "NED",
         "dishes": [
             "Stroopwafels (thin caramel-filled waffles)",
             "Hutspot (mashed potato dish with carrots and onions)",
@@ -280,13 +210,24 @@ a[
     },
     {
         "name": "United Arab Emirates",
-        "code": "ARE",
+        "code": "UAE",
         "dishes": [
             "Al Harees (meat and wheat slow-cooked into a porridge)",
             "Machboos (spiced rice with meat)",
             "Shawarma",
             "Luqaimat (sweet dumplings)",
             "Balaleet (saffron noodles with eggs)"
+        ]
+    },
+    {
+        "name": "China",
+        "code": "CHN",
+        "dishes": [
+            "Peking Duck",
+            "Hot Pot",
+            "Dumplings",
+            "Mapo Tofu",
+            "Kung Pao Chicken"
         ]
     }
 ]

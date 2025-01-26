@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class F1Race extends Model
 {
@@ -23,4 +24,15 @@ class F1Race extends Model
         'race_country_name',
         'race_api_key',
     ];
+
+
+    public function dishes(): BelongsToMany
+    {
+        return $this->belongsToMany(F1Race::class, 'dish_race', 'dish_id', 'race_id');
+    }
+
+    public static function getTableName()
+    {
+        return with(new static())->getTable();
+    }
 }

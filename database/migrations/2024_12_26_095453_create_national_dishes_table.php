@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('dish_name');
+            $table->string('dish_country_name');
             $table->string('dish_country_code');
         });
     }
