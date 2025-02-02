@@ -1,3 +1,3 @@
 <div class="">
-    Copright Martin Lever C
+    Copright Martin Lever © {{ now()->year }}
 </div>
