@@ -1,2 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 @import "tailwindcss";
 @source "../views";
+
+
+@theme {
+    --font-primary: Roboto, sans-serif;
+    --font-color-light: #fff;
+    --font-color-dark: #000000;
+    --site-color-primary: #dc053d;
+    --site-color-secondary: #ffb230;
+    --site-color-tertiary: #ff5a4a;
+    --site-color-borders: #ff825d;
+    --site-color-background: #fff;
+
+}
+
+@layer base {
+    html {
+        font-size: 16px;
+        background-color: var(--site-color-background);
+    }
+
+    h1 {
+        font-family: var(--font-primary);
+        font-weight: 400;
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-family: var(--font-primary);
+        font-weight: 300;
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-family: var(--font-primary);
+        font-weight: normal;
+        font-size: 1.5rem;
+    }
+
+    h4 {
+        font-family: var(--font-primary);
+        font-weight: normal;
+        font-size: 1rem;
+    }
+
+    h5 {
+        font-family: var(--font-primary);
+        font-weight: 200;
+        font-size: 1rem;
+    }
+
+    h6 {
+        font-family: var(--font-primary);
+        font-weight: 100;
+        font-size: 1rem;
+    }
+
+    p {
+        font-family: var(--font-primary);
+    }
+
+    a {
+        font-family: var(--font-primary);
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    
+    a:hover {
+        color: var(--site-color-secondary);
+    }
+    
+    button {
+        cursor: pointer;
+        border: 2px solid var(--site-color-borders);
+        color: var(--font-color-light);
+        border-radius: 5px;
+        background-color: var(--site-color-primary);
+        max-width: 250px;
+        width: 100%;
+        padding: 5px 15px;
+        transition: all 0.5s;
+    }
+
+    button:hover  {
+        background-color: unset;
+        color: var(--font-color-dark);
+    }
+
+    nav {
+        background-color: var(--site-color-primary);
+    }
+
+    footer {
+        background-color: var(--site-color-primary);
+    }
+}
+
+

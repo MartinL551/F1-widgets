@@ -11,3 +11,8 @@ Route::get('/', function () {
 Route::get('/calendar', [calendarController::class, 'showLatestRace']);
 
 Route::get('/recipe-suggestions', [RecipeController::class, 'showRecipeSuggester']);
+
+
+Route::get('/style-guide', function () {
+    return view('styleguide');
+});
