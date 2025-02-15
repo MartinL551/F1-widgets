@@ -1,4 +1,4 @@
-<nav class="">
+<nav class="border-b-5 border-(--site-color-borders)">
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div class="relative flex h-16 items-center justify-between">
       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -28,6 +28,7 @@
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <a href="/" class="rounded-md bg-(--site-color-secondary) hover:bg-(--site-color-tertiary) px-3 py-2 text-sm font-medium hover:text-(--font-color-light) transition-all transition duration-500" aria-current="page">Home</a>
             <a href="/recipe-suggestions" class="rounded-md bg-(--site-color-secondary) hover:bg-(--site-color-tertiary) px-3 py-2 text-sm font-medium hover:text-(--font-color-light) transition-all transition duration-500" aria-current="page">Recipie Suggester</a>
           </div>
         </div>
@@ -39,6 +40,7 @@
   <div class="sm:hidden" id="mobile-menu">
     <div class="space-y-1 px-2 pt-2 pb-3">
       <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+      <a href="/" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Home</a>
       <a href="/recipe-suggestions" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Recipie Suggester</a>
     </div>
   </div>

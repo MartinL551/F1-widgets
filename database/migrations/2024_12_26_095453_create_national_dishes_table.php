@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('dish_name');
             $table->string('dish_country_name');
             $table->string('dish_country_code');
+            $table->string('dish_recipe_link');
         });
     }
 
