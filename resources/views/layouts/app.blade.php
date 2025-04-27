@@ -8,9 +8,9 @@
     <header>
         @include('partials.header')
     </header>
-    <div>
+    <main>
             @yield('content')
-    </div>
+    </main>
     <footer class="w-full flex justify-center fixed bottom-0">
         @include('partials.footer')
     </footer>

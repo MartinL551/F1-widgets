@@ -22,6 +22,7 @@ class RecipeController extends Controller
 
         return view('recipeSuggester', [
             'dishes' => $dishes,
+            'race' => $currentRace,
         ]);
     }
 }
