@@ -40,10 +40,10 @@ class FetchF1Meetings extends Command
 
 
         $this->error('Truncate Race Table');
-        $existingRace = F1Race::whereNotNull('id');
+        $existingRaces = F1Race::whereNotNull('id')->get();
 
-        foreach ($existingRace as $race) {
-            $existingRace->dishes()->delete();
+        foreach ($existingRaces as $race) {
+            $race->dishes()->delete();
         }
 
         $this->call('app:fetch-national-dishes');
