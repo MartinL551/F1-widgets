@@ -39,7 +39,8 @@ class F1Race extends Model
 
     public static function getLatestRace()
     {
-        // To Do get this based on actual date
-        return F1Race::first();
+        $race = F1Race::where('race_date', '>=', now()->subDays(3))->orderBy('race_date', 'asc')->first();
+
+        return $race;
     }
 }
