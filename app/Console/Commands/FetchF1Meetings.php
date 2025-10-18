@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\F1Race;
 use App\Models\NationalDish;
+use App\Service\NationalDishService;
 use App\Service\OpenF1;
 use Illuminate\Console\Command;
 use Carbon;
@@ -27,7 +28,7 @@ class FetchF1Meetings extends Command
     /**
      * Execute the console command.
      */
-    public function handle(OpenF1 $openF1)
+    public function handle(OpenF1 $openF1, NationalDishService $nationalDishService)
     {
         $year = now()->format('Y');
         $currentRaces = $openF1->getRacesForAYear($year);
@@ -46,13 +47,19 @@ class FetchF1Meetings extends Command
             $race->dishes()->delete();
         }
 
-        $this->call('app:fetch-national-dishes');
+        $avalDishes = $nationalDishService->getAllNationalDishes();
+        $dishesMapped = [];
+
+        foreach ($avalDishes as $countryDishes) {
+            $dishesMapped[$countryDishes['code']][] = $countryDishes;
+        }
+
 
         $this->line('Fetch Latest Races From API', 'fg=blue');
         $this->warn('Creating New Races from API, year: ' . $year);
         foreach ($currentRaces as $race) {
             $this->warn('Inserting ' . $race['meeting_name']);
-            $currenctRace = F1Race::create(
+            $currentRace = F1Race::create(
                 [
                     'race_name' => $race['meeting_name'],
                     'race_circuit_name' => $race['circuit_short_name'],
@@ -64,13 +71,20 @@ class FetchF1Meetings extends Command
                 ]
             );
 
-            $dishes = NationalDish::where('dish_country_code', '=', $race['country_code'])->get();
+            if (isset($dishesMapped[$race['country_code']])) {
+                foreach ($dishesMapped[$race['country_code']] as $key => $dish) {
+                      $this->warn('Inserting ' . $dish['name'] . ' ' .  $race['country_code']);
+                    foreach ($dish['dishes'] as $dishItem) {
+                        $dishInstance = new NationalDish();
+                        $dishInstance->dish_name = $dishItem;
+                        $dishInstance->dish_country_name = $dish['name'];
+                        $dishInstance->dish_country_code = $dish['code'];
+                        $currentRace->dishes()->save($dishInstance);
+                    }
+                }
+            }
 
             $this->info('Creating Relationships ' . $race['meeting_name']);
-
-            $currenctRace->dishes()->saveMany($dishes);
-
-            $this->info('Created: ' . $dishes->count());
         }
     }
 }
