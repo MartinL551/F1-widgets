@@ -15,10 +15,10 @@ class CalendarController extends Controller
 
     public function showLatestRace()
     {
-        $allRaces = $this->openF1->getRacesForAYear(2024);
+        $allRaces = $this->openF1->getRacesForAYear(now()->format('Y'));
 
-        return view('latestRace', [
-            'calendarString' => $allRaces,
+        return view('calendar', [
+            'races' => $allRaces,
         ]);
     }
 }
