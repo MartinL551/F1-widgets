@@ -11,9 +11,7 @@
     
     <div class="grid place-items-center grid-cols-3 md:grid-cols-3 gap-4">
         @foreach ($dishes as $dish)
-            <div class="block text-white min-h-50 min-w-full p-6 bg-(--site-color-primary) border border-(--site-color-borders) border-4 rounded-sm shadow-sm">
-                <p> {{ $dish->dish_name }}</p>
-            </div>
+            <x-dish :dish="$dish" />
         @endforeach
     </div>
 
