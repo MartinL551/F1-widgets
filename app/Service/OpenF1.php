@@ -34,9 +34,20 @@ class OpenF1
     public function getRaceControllMessages()
     {
         $currentRace = F1Race::getLatestRace();
-        $url = (string) $this->api_base_url->withPath('v1/race_control')->withQuery(['meeting_key' => $currentRace->race_api_key]);
+        $sessionKey = $this->getLatestSessionType();
+        $url = (string) $this->api_base_url->withPath('v1/race_control')->withQuery(['meeting_key' => $currentRace->race_api_key, 'session_key' => $sessionKey]);
         $data = Http::get($url);
 
         return $data->json();
+    }
+
+    public function getLatestSessionType()
+    {
+        $currentRace = F1Race::getLatestRace();
+        $url = (string) $this->api_base_url->withPath('v1/sessions')->withQuery(['meeting_key' => $currentRace->race_api_key, 'session_key' => 'latest']);
+        $data = Http::get($url);
+        $data = $data->json();
+
+        return $data[0]['session_key'];
     }
 }

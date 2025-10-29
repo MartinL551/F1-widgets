@@ -31,6 +31,7 @@
             <a href="/" class="rounded-md bg-(--site-color-secondary) hover:bg-(--site-color-tertiary) px-3 py-2 text-sm font-medium hover:text-(--font-color-light) transition-all transition duration-500" aria-current="page">Home</a>
             <a href="/calendar" class="rounded-md bg-(--site-color-secondary) hover:bg-(--site-color-tertiary) px-3 py-2 text-sm font-medium hover:text-(--font-color-light) transition-all transition duration-500" aria-current="page">Calendar</a>
             <a href="/recipe-suggestions" class="rounded-md bg-(--site-color-secondary) hover:bg-(--site-color-tertiary) px-3 py-2 text-sm font-medium hover:text-(--font-color-light) transition-all transition duration-500" aria-current="page">Recipie Suggester</a>
+            <a href="/race-control" class="rounded-md bg-(--site-color-secondary) hover:bg-(--site-color-tertiary) px-3 py-2 text-sm font-medium hover:text-(--font-color-light) transition-all transition duration-500" aria-current="page">Race Control</a>
           </div>
         </div>
       </div>

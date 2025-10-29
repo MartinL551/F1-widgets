@@ -4,4 +4,5 @@
     <p>{{ $message['message'] }}</p>
     <p>{{ $message['flag'] }}</p>
     <p>{{ $message['scope'] }}</p>
+    <p>{{ $message['date'] }}</p>
 </div>
