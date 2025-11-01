@@ -11,7 +11,7 @@ class raceControl {
     }
 
     fetchMessages() {
-        fetch('/api/race-control/latestMessages')
+        fetch('/api/race-control/latestMessages?length=' + this.length)
             .then(response => response.json())
             .then(data => {
                 this.updateMessages(data);
@@ -19,13 +19,16 @@ class raceControl {
     }
 
     updateMessages(messages) {
-        this.messagesContainer.innerHTML = '';
         messages.forEach((message, index) => {
-            const messageElement = document.createElement('x-message');
-            messageElement.setAttribute('message', JSON.stringify(message));
-            messageElement.setAttribute('index', index);
-            this.messagesContainer.appendChild(messageElement);
+            const htmlMessage = new DOMParser().parseFromString(message, "text/xml");
+            this.messagesContainer.prepend(htmlMessage.firstChild);
+            this.updateLength(this.length + 1);
         });
+    }
+
+    updateLength(newLength) {
+        this.length = newLength;
+        this.messagesContainer.dataset.length = newLength;
     }
 }
 

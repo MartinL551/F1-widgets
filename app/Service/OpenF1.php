@@ -32,7 +32,7 @@ class OpenF1
         return $data->json();
     }
 
-    public function getRaceControllMessages()
+    public function getRaceControllMessages($fromIndex = 0)
     {
         $currentRace = F1Race::getLatestRace();
         $session = $this->getLatestSession();
@@ -43,7 +43,7 @@ class OpenF1
             if ($this->checkSessionActive($sessionStart, $sessionEnd)) {
                 Cache::forget('race_control');
             } else {
-                return $cached['messages'];
+                return array_slice($cached['messages'], $fromIndex);
             }
         }
 
@@ -52,7 +52,7 @@ class OpenF1
 
         Cache::set('race_control', ['messages' => array_reverse($data->json()), 'meeting_key' => $currentRace->race_api_key, 'timestamp' => now()]);
 
-        return array_reverse($data->json());
+        return array_slice(array_reverse($data->json()), $fromIndex);
     }
 
     public function getLatestSession()

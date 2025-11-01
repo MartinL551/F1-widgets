@@ -21,8 +21,17 @@ class RaceController extends Controller
         ]);
     }
 
-    public function getRaceMessages()
+    public function getRaceMessages(Request $request)
     {
-        return response()->json($this->openF1->getRaceControllMessages());
+        $length = (int) $request->query('length');
+        $raceMessages = $this->openF1->getRaceControllMessages($length ?? 0);
+        $htmlMessages = [];
+
+
+        foreach ($raceMessages as $key => $message) {
+            $htmlMessages[] = view('Components.Message.message', ['message' => $message, 'index' => $key])->render();
+        }
+
+        return response()->json($htmlMessages);
     }
 }
