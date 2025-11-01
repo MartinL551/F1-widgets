@@ -15,6 +15,8 @@ Route::get('/recipe-suggestions', [RecipeController::class, 'showRecipeSuggester
 
 Route::get('/race-control', [RaceController::class, 'showRaceMessages']);
 
+Route::get('/api/race-control/latestMessages', [RaceController::class, 'getRaceMessages']);
+
 
 Route::get('/style-guide', function () {
     return view('styleguide');

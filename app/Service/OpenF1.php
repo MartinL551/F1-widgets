@@ -35,59 +35,47 @@ class OpenF1
     public function getRaceControllMessages()
     {
         $currentRace = F1Race::getLatestRace();
-        $sessionKey = $this->getLatestSessionType();
-
-
+        $session = $this->getLatestSession();
+        $sessionStart = \Carbon\Carbon::parse($session['start']);
+        $sessionEnd = \Carbon\Carbon::parse($session['end']);
 
         if (($cached = Cache::get('race_control')) && $cached['meeting_key'] === $currentRace->race_api_key) {
-            if ($this->checkCacheExpired($cached['timestamp'] ?? null)) {
+            if ($this->checkSessionActive($sessionStart, $sessionEnd)) {
                 Cache::forget('race_control');
             } else {
                 return $cached['messages'];
             }
         }
 
-        $url = (string) $this->api_base_url->withPath('v1/race_control')->withQuery(['meeting_key' => $currentRace->race_api_key, 'session_key' => $sessionKey]);
+        $url = (string) $this->api_base_url->withPath('v1/race_control')->withQuery(['meeting_key' => $currentRace->race_api_key, 'session_key' => $session['session_key']]);
         $data = Http::get($url);
 
-        Cache::set('race_control', ['messages' => $data->json(), 'meeting_key' => $currentRace->race_api_key, 'timestamp' => now()]);
+        Cache::set('race_control', ['messages' => array_reverse($data->json()), 'meeting_key' => $currentRace->race_api_key, 'timestamp' => now()]);
 
-        return $data->json();
+        return array_reverse($data->json());
     }
 
-    public function getLatestSessionType()
+    public function getLatestSession()
     {
         $currentRace = F1Race::getLatestRace();
 
         if (($cached = Cache::get('session')) && $cached['meeting_key'] === $currentRace->race_api_key) {
-            if ($this->checkCacheExpired($cached['timestamp'] ?? null)) {
-                Cache::forget('session');
-            } else {
-                return $cached['session_key'];
-            }
+            return $cached;
         }
 
         $url = (string) $this->api_base_url->withPath('v1/sessions')->withQuery(['meeting_key' => $currentRace->race_api_key, 'session_key' => 'latest']);
         $data = Http::get($url);
         $data = $data->json();
 
-        Cache::set('session', ['session_key' => $data[0]['session_key'],'meeting_key' => $currentRace->race_api_key, 'timestamp' => now()]);
+        Cache::set('session', ['session_key' => $data[0]['session_key'],'meeting_key' => $currentRace->race_api_key, 'start' => $data[0]['date_start'], 'end' => $data[0]['date_end']], now()->addHours(5));
 
-        return $data[0]['session_key'];
+        return Cache::get('session');
     }
 
-    public function expireCurrentCache()
-    {
-        Cache::forget('session');
-        Cache::forget('race_control');
-    }
-
-    public function checkCacheExpired($cacheTimestamp)
+    public function checkSessionActive($sessionStart, $sessionEnd)
     {
         $now = now();
-        $cacheTime = \Carbon\Carbon::parse($cacheTimestamp);
-        $diffInHours = $now->diffInHours($cacheTime);
 
-        return $diffInHours >= 12;
+        return $now->between($sessionStart, $sessionEnd);
     }
 }

@@ -20,4 +20,9 @@ class RaceController extends Controller
             'messages' => $raceMessages,
         ]);
     }
+
+    public function getRaceMessages()
+    {
+        return response()->json($this->openF1->getRaceControllMessages());
+    }
 }
